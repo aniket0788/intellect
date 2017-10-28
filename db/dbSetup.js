@@ -2,6 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 // importing application configuration file 
 const userSampleData = require('./../model/userModel');
 const todoSampleData = require('./../model/todisModel');
+const config = require('./../config');
 
 let mongodb = function mongodb() {    
    let database = null;
@@ -11,7 +12,7 @@ let databaseInstance = null;
 
 mongodb.prototype.setup = function(callback) {
      const MongoClient = require('mongodb').MongoClient;
-    let connectionString = 'mongodb://intellect:pcRugRY2T5@ds023448.mlab.com:23448/intellect'
+    let connectionString = config.dbConnectionString;
     MongoClient.connect(connectionString,  function(err, db) {
         if(err) { 
             return callback(err);
