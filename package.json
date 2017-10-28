@@ -1,0 +1,21 @@
+{
+  "name": "graphql-server",
+  "version": "1.0.0",
+  "description": "This is a graphql server for some sample api requests ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "intellect",
+    "graphql",
+    "server"
+  ],
+  "author": "Alok Adhao",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.5.0",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33"
+  }
+}
