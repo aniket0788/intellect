@@ -1,3 +1,6 @@
+Install node packages by following command
+npm install
+
 Start server
 COMMAND: node server.js
 
