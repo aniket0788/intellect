@@ -11,6 +11,8 @@ const mongodSetup = require('./db/dbSetup');
 
 // importing application configuration file 
 const userRouter = require('./routers/userRouter');
+const todoRouter = require('./routers/todoRouter');
+
 
 // get an instance of router
 const router = express.Router();
@@ -36,6 +38,7 @@ async.waterfall([
         config.mongodbInstance = mongoInstance;
         // apply the routes to our application
         app.use('/user', userRouter);
+        app.use('/todo', todoRouter);
         callback(null);
     },
     function (callback) {
@@ -46,5 +49,9 @@ async.waterfall([
         });
     }
 ], function (err, result) {
-    console.log('Server successfully started ');
+    if(err){
+        console.log("Error during starting server");
+    } else {
+        console.log('Server started successfully  ');
+    }
 });

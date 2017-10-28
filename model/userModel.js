@@ -1,6 +1,6 @@
 module.exports = [
     {
-        '_id': 1,
+        'id': '1',
         'fName': 'Jhon',
         'lname': 'Gray',
         'email': 'jhongray@gmail.com',
@@ -9,7 +9,7 @@ module.exports = [
         'isActive': true
     },
     {
-        '_id': 2,
+        'id': '2',
         'fName': 'Shinu',
         'lname': 'Black',
         'email': 'shinublack@gmail.com',
@@ -18,7 +18,7 @@ module.exports = [
         'isActive': true
     },
     {
-        '_id': 3,
+        'id': '3',
         'fName': 'Josep',
         'lname': 'Green',
         'email': 'jhongray@gmail.com',

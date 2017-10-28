@@ -4,9 +4,9 @@ const express = require('express');
 const router = express.Router();
 
 // import user details controller
-const getUserDetails = require('./../controllers/users/getUserDetailsCTRL');
+const getTodoDetails = require('./../controllers/todos/getTodoDetailsCTRL');
 router.get('/details', function(req, res) {
-    getUserDetails(req, res);
+    getTodoDetails(req, res);
 });
 
 module.exports = router;

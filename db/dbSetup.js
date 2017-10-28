@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 // importing application configuration file 
 const userSampleData = require('./../model/userModel');
+const todoSampleData = require('./../model/todisModel');
 
 let mongodb = function mongodb() {    
    let database = null;
@@ -25,27 +26,66 @@ mongodb.prototype.setup = function(callback) {
     });
 }
 
-mongodb.prototype.getUsers = function(callback){
-    console.log("I am here");
-   // var self = this; 
+
+mongodb.prototype.getTodo = function(todoId, callback){
+    var todo = databaseInstance.collection('todos');
+    console.log("todos ---", todoId);
+    todo.findOne({'id': todoId},function(error, results){
+        console.log(results); // output all records
+        if (error) {
+            console.log('error ', error);
+            callback(error,null);
+        } else {
+             console.log('response ', results);
+            callback(null, results)
+        }
+    });
+} 
+
+mongodb.prototype.getUsers = function(userId, callback){
     var user = databaseInstance.collection('user');
-  // Show that duplicate records got dropped
-  user.find({}).toArray(function(err, items) {
-   console.log("users are ", items);
-   if(err) {
-       callback(err, null);
-   } else {
-       callback(null, items);
-   }
-  });
-}
+    console.log("userId ---", userId);
+    user.findOne({'id': userId},function(error, results){
+        console.log(results); // output all records
+        if (error) {
+            console.log('error ', error);
+            callback(error,null);
+        } else {
+             console.log('response ', results);
+            callback(null, results)
+        }
+    });
+} 
+
+mongodb.prototype.getToDoDetails = function(userId, callback){
+    var user = databaseInstance.collection('todos');
+    console.log("userId ---", userId);
+    user.find({'userId': userId, 'done': false}).toArray(function(error, results){
+        console.log(results); // output all records
+        if (error) {
+            console.log('error ', error);
+            callback(error,null);
+        } else {
+             console.log('response ', results);
+            callback(null, results)
+        }
+    });
+} 
+
+
 
 function setupSampleData(db, callback) {
     db.collection("user").insertMany(userSampleData, function(err, res) {
         if (err){
             callback(err, null)
         }else {
-            callback(null, 'done')
+            db.collection("todos").insertMany(todoSampleData, function(err, res) {
+                if (err){
+                    callback(err, null)
+                }else {
+                    callback(null, 'done')
+                }
+            });
         }
   });
 }
